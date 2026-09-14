@@ -83,31 +83,29 @@ Attack.Kill = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy()
+  BringEnemy(model)
   EquipWeapon(_G.SelectWeapon)
   local Equipped = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
   local ToolTip = Equipped.ToolTip
   if ToolTip == "Blox Fruit" then _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(90),0)) else _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0) * CFrame.Angles(0,math.rad(180),0))end
-  if RandomCFrame then wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30 ,0)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))end
   end
 end
 Attack.Kill2 = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy()
+  BringEnemy(model)
   EquipWeapon(_G.SelectWeapon)
   local Equipped = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
   local ToolTip = Equipped.ToolTip
   if ToolTip == "Blox Fruit" then _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(90),0)) else _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,8) * CFrame.Angles(0,math.rad(180),0))end
-  if RandomCFrame then wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30 ,0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))end
   end
 end
 Attack.KillSea = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy()
+  BringEnemy(model)
   EquipWeapon(_G.SelectWeapon)
   local Equipped = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
   local ToolTip = Equipped.ToolTip
@@ -118,17 +116,16 @@ Attack.Sword = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy()
+  BringEnemy(model)
   weaponSc("Sword")
   _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
-  if RandomCFrame then wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30 ,0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))end
   end
 end
 Attack.Mas = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy()
+  BringEnemy(model)
     if model.Humanoid.Health <= HealthM then
       _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
       Useskills("Blox Fruit","Z")
@@ -144,7 +141,7 @@ Attack.Masgun = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy()
+  BringEnemy(model)
     if model.Humanoid.Health <= HealthM then
       _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,8))
       Useskills("Gun","Z")
@@ -2206,6 +2203,20 @@ spawn(function()
     local BONE_QUEST_POS = CFrame.new(-9516.99316, 172.01718, 6078.46533)
     local BONE_HEIGHT = 10
 
+    -- Bone farm teleport: bypasses the global long-distance BypassTP path.
+    local function BoneTP(cf)
+        local char = player.Character
+        local hrp = char and char:FindFirstChild("HumanoidRootPart")
+        if not hrp or not cf then return false end
+
+        pcall(function()
+            if _G.TweenCache then _G.TweenCache:Cancel() end
+        end)
+
+        hrp.CFrame = cf
+        return true
+    end
+
     local function getBoneMob()
         for _, name in ipairs(BonesTable) do
             local mob = GetConnectionEnemies(name)
@@ -2258,7 +2269,7 @@ spawn(function()
 
             -- Quest giver dùng tọa độ cố định, không phụ thuộc GuideModule.
             if _G.AcceptQuestB and questUI and not questUI.Visible then
-                _tp(BONE_QUEST_POS)
+                BoneTP(BONE_QUEST_POS)
 
                 repeat
                     task.wait(0.2)
@@ -2267,17 +2278,39 @@ spawn(function()
 
                 if not _G.AutoFarm_Bone then return end
 
+                -- Always try the highest Bone quest first, then fall back only
+                -- if that quest is not available for the current character.
                 local questData = {
                     {"StartQuest","HauntedQuest2",2},
                     {"StartQuest","HauntedQuest2",1},
-                    {"StartQuest","HauntedQuest1",1},
-                    {"StartQuest","HauntedQuest1",2}
+                    {"StartQuest","HauntedQuest1",2},
+                    {"StartQuest","HauntedQuest1",1}
                 }
 
-                replicated.Remotes.CommF_:InvokeServer(
-                    unpack(questData[math.random(1, #questData)])
-                )
-                task.wait(0.5)
+                for _, data in ipairs(questData) do
+                    if not _G.AutoFarm_Bone then break end
+                    local ok = pcall(function()
+                        replicated.Remotes.CommF_:InvokeServer(unpack(data))
+                    end)
+                    task.wait(0.2)
+                    if questUI.Visible then
+                        break
+                    end
+                end
+                task.wait(0.3)
+            end
+
+            -- Auto-equip the selected weapon before entering the mob area.
+            pcall(function()
+                EquipWeapon(_G.SelectWeapon)
+            end)
+
+            -- Use the existing FastAttack system with a Bone-specific hitbox
+            -- distance while this farm is running.
+            _G.FastAttackEnabled = true
+            if _G.FastAttackConfig then
+                _G.FastAttackConfig.AttackMobs = true
+                _G.FastAttackConfig.AttackDistance = 100
             end
 
             local mob = getBoneMob()
@@ -2296,16 +2329,18 @@ spawn(function()
                 local mobRoot = mob:FindFirstChild("HumanoidRootPart")
                 if mobRoot then
                     -- Player luôn đứng 10 studs phía trên mob.
-                    _tp(mobRoot.CFrame * CFrame.new(0, BONE_HEIGHT, 0))
+                    BoneTP(mobRoot.CFrame * CFrame.new(0, BONE_HEIGHT, 0))
                     MousePos = mobRoot.Position
                 end
 
                 Attack.Kill(mob, _G.AutoFarm_Bone)
             else
-                -- Không thấy mob -> load lại khu Bone.
-                _tp(BONE_MOB_POS)
+                -- No mob yet: go directly to the Bone mob farm area and load it.
+                BoneTP(BONE_MOB_POS * CFrame.new(0, BONE_HEIGHT, 0))
+                pcall(function()
+                    FarmCore.LoadArea(BONE_MOB_POS.Position, BonesTable, true)
+                end)
                 task.wait(0.35)
-                FarmCore.LoadArea(BONE_MOB_POS.Position, BonesTable, true)
             end
         end)
     end
@@ -12668,6 +12703,7 @@ StartMainLoops()
 
 Window:Notify({
   Title = "Vantablack Hub",
+  Subtitle ="by DUCZ
   Content = "Vantablack Premium® - Comback",
   Image = "rbxassetid://127729348105692",
   Duration = 5
