@@ -12703,7 +12703,6 @@ StartMainLoops()
 
 Window:Notify({
   Title = "Vantablack Hub",
-  Subtitle ="by DUCZ
   Content = "Vantablack Premium® - Comback",
   Image = "rbxassetid://127729348105692",
   Duration = 5
