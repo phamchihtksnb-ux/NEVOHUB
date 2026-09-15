@@ -1,3 +1,4 @@
+
 loadstring(game:HttpGet("https://raw.githubusercontent.com/AnhDangNhoEm/TuanAnhIOS/refs/heads/main/koby"))()
 do
   ply = game.Players
@@ -72,7 +73,6 @@ weaponSc = function(weapon)
     end
   end
 end
-local FARM_HEIGHT = 10
 local Attack = {}
 Attack.__index = Attack
 Attack.Alive = function(model) if not model then return end local Humanoid = model:FindFirstChild("Humanoid") return Humanoid and Humanoid.Health > 0 end
@@ -83,29 +83,32 @@ Attack.Kill = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy(model)
+  BringEnemy()
   EquipWeapon(_G.SelectWeapon)
-  local Equipped = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
-  local ToolTip = Equipped.ToolTip
-  if ToolTip == "Blox Fruit" then _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(90),0)) else _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0) * CFrame.Angles(0,math.rad(180),0))end
+  local Character = game.Players.LocalPlayer.Character
+  local Equipped = Character and Character:FindFirstChildOfClass("Tool")
+  local ToolTip = Equipped and Equipped.ToolTip or "Melee"
+  if ToolTip == "Blox Fruit" then _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(90),0)) else _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(180),0))end
+  if RandomCFrame then wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30 ,0)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(.5)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))end
   end
 end
 Attack.Kill2 = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy(model)
+  BringEnemy()
   EquipWeapon(_G.SelectWeapon)
   local Equipped = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
   local ToolTip = Equipped.ToolTip
-  if ToolTip == "Blox Fruit" then _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(90),0)) else _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,8) * CFrame.Angles(0,math.rad(180),0))end
+  if ToolTip == "Blox Fruit" then _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(90),0)) else _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,10,0) * CFrame.Angles(0,math.rad(180),0))end
+  if RandomCFrame then wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30 ,0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))end
   end
 end
 Attack.KillSea = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy(model)
+  BringEnemy()
   EquipWeapon(_G.SelectWeapon)
   local Equipped = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool")
   local ToolTip = Equipped.ToolTip
@@ -116,24 +119,25 @@ Attack.Sword = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy(model)
+  BringEnemy()
   weaponSc("Sword")
-  _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+  _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
+  if RandomCFrame then wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(25, 30, 0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30 ,0)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(0, 30, 25)) wait(0.1)_tp(model.HumanoidRootPart.CFrame * CFrame.new(-25, 30, 0))end
   end
 end
 Attack.Mas = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy(model)
+  BringEnemy()
     if model.Humanoid.Health <= HealthM then
-      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
       Useskills("Blox Fruit","Z")
       Useskills("Blox Fruit","X")
       Useskills("Blox Fruit","C")
     else
       weaponSc("Melee")
-      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
     end
   end
 end
@@ -141,14 +145,14 @@ Attack.Masgun = function(model,Succes)
   if model and Succes then
   if not model:GetAttribute("Locked") then model:SetAttribute("Locked",model.HumanoidRootPart.CFrame) end
   PosMon = model:GetAttribute("Locked").Position
-  BringEnemy(model)
+  BringEnemy()
     if model.Humanoid.Health <= HealthM then
-      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,8))
+      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,35,8))
       Useskills("Gun","Z")
       Useskills("Gun","X")
     else
       weaponSc("Melee")
-      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+      _tp(model.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
     end
   end
 end
@@ -176,62 +180,92 @@ statsSetings = function(Num, value)
   end
 end
 BringEnemy = function(Mon)
-    if not _B or not Mon then return end
+    if not _B then return end
+    if not Mon then 
+        -- Tự động tìm mob nếu không có Mon
+        local hrp = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
+        if not hrp then return end
+        
+        local closestDist = math.huge
+        for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
+            local hum = enemy:FindFirstChildOfClass("Humanoid")
+            local root = enemy:FindFirstChild("HumanoidRootPart")
+            if hum and root and hum.Health > 0 then
+                local dist = (root.Position - hrp.Position).Magnitude
+                if dist < closestDist then
+                    closestDist = dist
+                    Mon = enemy
+                end
+            end
+        end
+        if not Mon then return end
+    end
+    
+    local AreaMob = false
+    
+    local function Mobs(enemy)
+        local hum = enemy:FindFirstChildOfClass("Humanoid")
+        local root = enemy:FindFirstChild("HumanoidRootPart")
+        return hum and root and hum.Health > 0, root, hum
+    end
 
-    local targetRoot = Mon:FindFirstChild("HumanoidRootPart")
-    local targetHum = Mon:FindFirstChildOfClass("Humanoid")
-    if not targetRoot or not targetHum or targetHum.Health <= 0 then return end
-
+    local function Network(part)
+        if isnetworkowner then
+            return isnetworkowner(part)
+        end
+        return part.ReceiveAge == 0 and not part.Anchored and part.Velocity.Magnitude > 0
+    end
+    
     pcall(function()
-        if sethiddenproperty then
+        -- Tăng simulation radius
+        if sethiddenproperty then 
             sethiddenproperty(plr, "SimulationRadius", math.huge)
         end
-        if setsimulationradius then
-            setsimulationradius(math.huge)
-        end
-
-        -- Bone-style anchor: dùng đúng mob đang được farm làm tâm,
-        -- không tự chọn một mob gần nhất khác.
-        local anchor = targetRoot.Position
-
-        for _, enemy in ipairs(workspace.Enemies:GetChildren()) do
-            if enemy.Name == Mon.Name then
-                local root = enemy:FindFirstChild("HumanoidRootPart")
-                local hum = enemy:FindFirstChildOfClass("Humanoid")
-
-                if root and hum and hum.Health > 0 then
-                    root.CanCollide = false
-                    hum.WalkSpeed = 0
-                    hum.JumpPower = 0
-                    hum.AutoRotate = false
-
-                    root.CFrame = CFrame.new(anchor)
-                    root.AssemblyLinearVelocity = Vector3.zero
-                    root.AssemblyAngularVelocity = Vector3.zero
-
-                    local bv = root:FindFirstChild("FarmAnchorVelocity")
-                    if not bv then
-                        bv = Instance.new("BodyVelocity")
-                        bv.Name = "FarmAnchorVelocity"
-                        bv.MaxForce = Vector3.new(1e9, 1e9, 1e9)
-                        bv.P = 1e6
-                        bv.Velocity = Vector3.zero
-                        bv.Parent = root
-                    else
-                        bv.Velocity = Vector3.zero
-                    end
-
-                    for _, part in ipairs(enemy:GetDescendants()) do
-                        if part:IsA("BasePart") then
-                            part.CanCollide = false
+        
+        local targetPos = Mon.HumanoidRootPart.Position
+        
+        for _, v in ipairs(workspace.Enemies:GetChildren()) do
+            if v ~= Mon then
+                local alive, root, hum = Mobs(v)
+                if alive and v.Name == Mon.Name then
+                    local distance = (root.Position - targetPos).Magnitude
+                    if distance <= 3000 then
+                        -- Tạo BodyVelocity để giữ mob
+                        local bv = root:FindFirstChild("BodyVelocity")
+                        if not bv then
+                            bv = Instance.new("BodyVelocity")
+                            bv.Name = "BodyVelocity"
+                            bv.MaxForce = Vector3.new(1e9, 1e9, 1e9)
+                            bv.Velocity = Vector3.zero
+                            bv.Parent = root
                         end
+                        
+                        if distance <= 10 then
+                            AreaMob = true
+                        end
+                        
+                        -- Kéo mob lại nếu là network owner và chưa ở gần
+                        if not AreaMob and Network(root) then
+                            root.CFrame = CFrame.new(targetPos)
+                        end
+                        
+                        -- Tắt va chạm và ngăn di chuyển
+                        root.CanCollide = false
+                        hum.WalkSpeed = 0
+                        hum.JumpPower = 0
                     end
                 end
             end
         end
+        
+        -- Xử lý mob chính
+        if Mon and Mon:FindFirstChild("HumanoidRootPart") then
+            Mon.HumanoidRootPart.CanCollide = false
+            Mon.Humanoid.WalkSpeed = 0
+            Mon.Humanoid.JumpPower = 0
+        end
     end)
 end
-
 Useskills = function(weapon, skill)
   if weapon == "Melee" then
     weaponSc("Melee")
@@ -320,7 +354,7 @@ end
 --// Moi farm dung GetConnectionEnemies / FarmCore.Target deu duoc ap dung
 --// =====================================================================
 FarmCore = {}
-FarmCore.SpotRadius = 350      -- ban kinh coi la "cung 1 bai"
+FarmCore.SpotRadius = 5000      -- ban kinh coi la "cung 1 bai"
 FarmCore.CacheTime  = 0.15     -- cache danh sach quai (giam lag)
 FarmCore.LoadCool   = 4        -- giay: khong load lai bai qua nhieu lan
 FarmCore._cache = {t = 0, list = {}}
@@ -758,7 +792,7 @@ block.Transparency = 1
 local blockfind = workspace:FindFirstChild(block.Name)
 if blockfind and blockfind ~= block then blockfind:Destroy() end
 task.spawn(function()while task.wait()do if block and block.Parent==workspace then if shouldTween then getgenv().OnFarm=true else getgenv().OnFarm=false end else getgenv().OnFarm=false end end end)
-task.spawn(function()local a=game.Players.LocalPlayer;repeat task.wait()until a.Character and a.Character.PrimaryPart;block.CFrame=a.Character.PrimaryPart.CFrame;while task.wait()do pcall(function()if getgenv().OnFarm then if block and block.Parent==workspace then local b=a.Character and a.Character.PrimaryPart;if b and(b.Position-block.Position).Magnitude<=200 then b.CFrame=block.CFrame else block.CFrame=b.CFrame end end;local c=a.Character;if c then for d,e in pairs(c:GetChildren())do if e:IsA("BasePart")then e.CanCollide=false end end end else local c=a.Character;if c then for d,e in pairs(c:GetChildren())do if e:IsA("BasePart")then e.CanCollide=true end end end end end)end end)
+task.spawn(function()local a=game.Players.LocalPlayer;repeat task.wait()until a.Character and a.Character.PrimaryPart;block.CFrame=a.Character.PrimaryPart.CFrame;while task.wait()do pcall(function()if getgenv().OnFarm then if block and block.Parent==workspace then local b=a.Character and a.Character.PrimaryPart;if b then b.CFrame=block.CFrame end end;local c=a.Character;if c then for d,e in pairs(c:GetChildren())do if e:IsA("BasePart")then e.CanCollide=false end end end else local c=a.Character;if c then for d,e in pairs(c:GetChildren())do if e:IsA("BasePart")then e.CanCollide=true end end end end end)end end)
 
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
@@ -1055,6 +1089,10 @@ function requestentrance(pos)
 end
 
 _tp = function(target)
+    if _G.Level or _G.AutoFarmNear then
+        shouldTween = true
+        getgenv().OnFarm = true
+    end
     local gg
     if typeof(target) == "Vector3" then
         gg = CFrame.new(target)
@@ -1069,13 +1107,6 @@ _tp = function(target)
     local character = plr.Character
     if not character or not character:FindFirstChild("HumanoidRootPart") then return end
     local rootPart = character.HumanoidRootPart
-    
-    pcall(function()
-        if CanBypassTeleport(gg) then
-            BypassTP(gg)
-            task.wait(0.5)
-        end
-    end)
     
     pcall(function()
         requestentrance(target)
@@ -1104,7 +1135,7 @@ _tp = function(target)
     end
     
     local distance = (gg.Position - rootPart.Position).Magnitude
-    local tweenInfo = TweenInfo.new(distance / 300, Enum.EasingStyle.Linear)
+    local tweenInfo = TweenInfo.new(math.max(0.12, distance / math.max(300, tonumber(Settings["Tween Speed"]) or 300)), Enum.EasingStyle.Linear)
     local tween = game:GetService("TweenService"):Create(block, tweenInfo, {CFrame = gg})    
     
     if plr.Character.Humanoid.Sit == true then
@@ -1923,6 +1954,8 @@ FarmLevel = Tabs.Main:AddToggle({
     Default = false,
     Callback = function(Value)
         _G.Level = Value
+        shouldTween = Value
+        getgenv().OnFarm = Value
         if not Value then
             alreadyTeleported = false
             teleporting = false
@@ -2035,31 +2068,60 @@ task.spawn(function()
                     end
 
                     local enemyName = questData[1]
+                    shouldTween = true
+                    getgenv().OnFarm = true
 
-                    -- Farm SACH tung bai: chi qua bai khac khi bai hien tai het quai
-                    local cleared = FarmCore.ClearSpot(
-                        enemyName,
-                        function()
-                            return _G.Level and questUI.Visible
-                        end,
-                        function(v)
-                            Attack.Kill(v, _G.Level)
-                        end
-                    )
+                    -- FARM TRUC TIEP: tim dung mob trong workspace.Enemies, khong phu thuoc Spot/Lock
+                    local targetMob
+                    local targetDist = math.huge
+                    local myRoot = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart")
 
-                    if not cleared then
-                        -- khong thay quai: bay den spawn point roi load quai truoc khi danh
-                        local spawnCF
-                        for _, spawnPoint in pairs(workspace["_WorldOrigin"].EnemySpawns:GetChildren()) do
-                            if string.find(spawnPoint.Name, enemyName) then
-                                spawnCF = spawnPoint.CFrame
-                                break
+                    if myRoot then
+                        for _, mob in ipairs(workspace.Enemies:GetChildren()) do
+                            if mob.Name == enemyName then
+                                local hum = mob:FindFirstChildOfClass("Humanoid")
+                                local mobRoot = mob:FindFirstChild("HumanoidRootPart")
+                                if hum and mobRoot and hum.Health > 0 then
+                                    local d = (mobRoot.Position - myRoot.Position).Magnitude
+                                    if d < targetDist then
+                                        targetMob = mob
+                                        targetDist = d
+                                    end
+                                end
                             end
                         end
+                    end
+
+                    if targetMob then
+                        -- Bay dung 10 studs va danh lien tuc mob hien tai
+                        Attack.Kill(targetMob, true)
+                        task.wait(0.03)
+                    else
+                        -- Chua co mob spawn: tim spawn cua dung quest va bay toi do
+                        local spawnCF
+                        local enemySpawns = workspace:FindFirstChild("_WorldOrigin") and workspace["_WorldOrigin"]:FindFirstChild("EnemySpawns")
+                        if enemySpawns then
+                            for _, spawnPoint in ipairs(enemySpawns:GetChildren()) do
+                                if spawnPoint.Name == enemyName or string.find(spawnPoint.Name, enemyName, 1, true) then
+                                    if spawnPoint:IsA("BasePart") then
+                                        spawnCF = spawnPoint.CFrame
+                                    elseif spawnPoint:IsA("Model") and spawnPoint.PrimaryPart then
+                                        spawnCF = spawnPoint.PrimaryPart.CFrame
+                                    end
+                                    if spawnCF then break end
+                                end
+                            end
+                        end
+
                         if spawnCF then
-                            _tp(spawnCF * CFrame.new(0, 25, 0))
-                            task.wait(0.4)
-                            FarmCore.LoadArea(spawnCF.Position, enemyName, true)
+                            _tp(spawnCF * CFrame.new(0, 10, 0))
+                            task.wait(0.6)
+                        else
+                            -- fallback: load them tai khu vuc quest
+                            pcall(function()
+                                FarmCore.LoadArea(myRoot and myRoot.Position or Vector3.zero, enemyName, true)
+                            end)
+                            task.wait(0.2)
                         end
                     end
                 end
@@ -2188,160 +2250,185 @@ end)
 
 Tabs.Main:AddSection("Farming Bone")
 
-local CheckingBone = Tabs.Main:AddParagraph("Bones", "")
-spawn(function()
-    local player = game.Players.LocalPlayer
-    local BonesTable = {
+local BoneFarm = {
+    Height = 10,
+    Hitbox = 100,
+    MobPosition = CFrame.new(-9495.6806640625, 453.58624267578125, 5977.3486328125),
+    QuestPosition = CFrame.new(-9516.99316, 172.01718, 6078.46533),
+    Mobs = {
         "Reborn Skeleton",
         "Living Zombie",
         "Demonic Soul",
         "Possessed Mummy"
     }
+}
 
-    -- Tọa độ ổn định của khu Bone.
-    local BONE_MOB_POS = CFrame.new(-9495.6806640625, 453.58624267578125, 5977.3486328125)
-    local BONE_QUEST_POS = CFrame.new(-9516.99316, 172.01718, 6078.46533)
-    local BONE_HEIGHT = 10
-
-    -- Bone farm teleport: bypasses the global long-distance BypassTP path.
-    local function BoneTP(cf)
-        local char = player.Character
-        local hrp = char and char:FindFirstChild("HumanoidRootPart")
-        if not hrp or not cf then return false end
-
+local function BoneTP(cf)
+    local character = plr.Character
+    local root = character and character:FindFirstChild("HumanoidRootPart")
+    if root and cf then
         pcall(function()
-            if _G.TweenCache then _G.TweenCache:Cancel() end
+            root.CFrame = cf
         end)
-
-        hrp.CFrame = cf
         return true
     end
+    return false
+end
 
-    local function getBoneMob()
-        for _, name in ipairs(BonesTable) do
-            local mob = GetConnectionEnemies(name)
-            if mob and mob:FindFirstChild("HumanoidRootPart")
-                and mob:FindFirstChildOfClass("Humanoid")
-                and mob.Humanoid.Health > 0 then
+local function BoneMob()
+    for _, name in ipairs(BoneFarm.Mobs) do
+        local mob = GetConnectionEnemies(name)
+        if mob then
+            local hum = mob:FindFirstChildOfClass("Humanoid")
+            local root = mob:FindFirstChild("HumanoidRootPart")
+            if hum and root and hum.Health > 0 then
                 return mob
             end
         end
-        return nil
     end
+end
 
-    local function anchorBoneMob(mob)
-        if not mob then return end
+local function BoneLock(mob, cf)
+    local root = mob and mob:FindFirstChild("HumanoidRootPart")
+    local hum = mob and mob:FindFirstChildOfClass("Humanoid")
+    if not root or not hum or hum.Health <= 0 then return end
 
-        local hrp = mob:FindFirstChild("HumanoidRootPart")
-        local hum = mob:FindFirstChildOfClass("Humanoid")
-        if not hrp or not hum or hum.Health <= 0 then return end
+    pcall(function()
+        root.CFrame = cf
+        root.AssemblyLinearVelocity = Vector3.zero
+        root.AssemblyAngularVelocity = Vector3.zero
+        root.CanCollide = false
+        hum.WalkSpeed = 0
+        hum.JumpPower = 0
+        hum.AutoRotate = false
 
-        pcall(function()
-            hrp.CFrame = BONE_MOB_POS
-            hrp.AssemblyLinearVelocity = Vector3.zero
-            hrp.AssemblyAngularVelocity = Vector3.zero
-            hrp.CanCollide = false
-
-            hum.WalkSpeed = 0
-            hum.JumpPower = 0
-            hum.AutoRotate = false
-
-            for _, part in ipairs(mob:GetDescendants()) do
-                if part:IsA("BasePart") then
-                    part.CanCollide = false
-                end
+        for _, part in ipairs(mob:GetDescendants()) do
+            if part:IsA("BasePart") then
+                part.CanCollide = false
             end
-        end)
+        end
+    end)
+end
+
+-- Dedicated Bone hitbox: does not depend on Attack.Kill moving the player.
+local function BoneAttack()
+    local character = plr.Character
+    if not character then return end
+
+    local root = character:FindFirstChild("HumanoidRootPart")
+    local weapon = character:FindFirstChildOfClass("Tool")
+    if not root or not weapon then return end
+
+    local targets = {}
+    for _, mob in ipairs(workspace.Enemies:GetChildren()) do
+        local hum = mob:FindFirstChildOfClass("Humanoid")
+        local mobRoot = mob:FindFirstChild("HumanoidRootPart")
+        local head = mob:FindFirstChild("Head")
+
+        if hum and mobRoot and head and hum.Health > 0 then
+            if (mobRoot.Position - root.Position).Magnitude <= BoneFarm.Hitbox then
+                table.insert(targets, {mob, mobRoot})
+            end
+        end
     end
 
-    while task.wait(0.25) do
+    if #targets == 0 then return end
+
+    pcall(function()
+        local net = replicated:WaitForChild("Modules"):WaitForChild("Net")
+        local registerAttack = net:WaitForChild("RE/RegisterAttack")
+        local registerHit = net:WaitForChild("RE/RegisterHit")
+
+        registerAttack:FireServer(-math.huge)
+
+        local firstHead
+        local hitList = {}
+
+        for i, pair in ipairs(targets) do
+            local mob = pair[1]
+            local mobRoot = pair[2]
+            local head = mob:FindFirstChild("Head")
+            if head then
+                firstHead = firstHead or head
+                hitList[i] = {mob, mobRoot}
+            end
+        end
+
+        if firstHead then
+            registerHit:FireServer(firstHead, hitList)
+        end
+    end)
+end
+
+spawn(function()
+    while wait(0.12) do
         if not _G.AutoFarm_Bone then
             continue
         end
 
         pcall(function()
-            local char = player.Character
-            local root = char and char:FindFirstChild("HumanoidRootPart")
+            local character = plr.Character
+            local root = character and character:FindFirstChild("HumanoidRootPart")
             if not root then return end
 
-            local main = player.PlayerGui:FindFirstChild("Main")
-            local questUI = main and main:FindFirstChild("Quest")
+            local main = plr.PlayerGui:FindFirstChild("Main")
+            local questGui = main and main:FindFirstChild("Quest")
 
-            -- Quest giver dùng tọa độ cố định, không phụ thuộc GuideModule.
-            if _G.AcceptQuestB and questUI and not questUI.Visible then
-                BoneTP(BONE_QUEST_POS)
+            -- Highest available Bone quest first.
+            if _G.AcceptQuestB and questGui and not questGui.Visible then
+                BoneTP(BoneFarm.QuestPosition)
+                wait(0.4)
 
-                repeat
-                    task.wait(0.2)
-                until not _G.AutoFarm_Bone
-                    or (root.Position - BONE_QUEST_POS.Position).Magnitude <= 50
-
-                if not _G.AutoFarm_Bone then return end
-
-                -- Always try the highest Bone quest first, then fall back only
-                -- if that quest is not available for the current character.
-                local questData = {
-                    {"StartQuest","HauntedQuest2",2},
-                    {"StartQuest","HauntedQuest2",1},
-                    {"StartQuest","HauntedQuest1",2},
-                    {"StartQuest","HauntedQuest1",1}
+                local highestFirst = {
+                    {"StartQuest", "HauntedQuest2", 2},
+                    {"StartQuest", "HauntedQuest2", 1},
+                    {"StartQuest", "HauntedQuest1", 2},
+                    {"StartQuest", "HauntedQuest1", 1}
                 }
 
-                for _, data in ipairs(questData) do
-                    if not _G.AutoFarm_Bone then break end
-                    local ok = pcall(function()
-                        replicated.Remotes.CommF_:InvokeServer(unpack(data))
+                for _, quest in ipairs(highestFirst) do
+                    if not _G.AutoFarm_Bone or questGui.Visible then break end
+                    pcall(function()
+                        replicated.Remotes.CommF_:InvokeServer(unpack(quest))
                     end)
-                    task.wait(0.2)
-                    if questUI.Visible then
-                        break
-                    end
+                    wait(0.25)
                 end
-                task.wait(0.3)
             end
 
-            -- Auto-equip the selected weapon before entering the mob area.
-            pcall(function()
-                EquipWeapon(_G.SelectWeapon)
-            end)
-
-            -- Use the existing FastAttack system with a Bone-specific hitbox
-            -- distance while this farm is running.
-            _G.FastAttackEnabled = true
-            if _G.FastAttackConfig then
-                _G.FastAttackConfig.AttackMobs = true
-                _G.FastAttackConfig.AttackDistance = 100
-            end
-
-            local mob = getBoneMob()
-
-            if mob then
-                -- Đưa mob đang farm về Bone anchor.
-                anchorBoneMob(mob)
-
-                -- Gom các mob cùng tên vào đúng tọa độ anchor.
-                for _, other in ipairs(workspace.Enemies:GetChildren()) do
-                    if other ~= mob and other.Name == mob.Name then
-                        anchorBoneMob(other)
-                    end
-                end
-
-                local mobRoot = mob:FindFirstChild("HumanoidRootPart")
-                if mobRoot then
-                    -- Player luôn đứng 10 studs phía trên mob.
-                    BoneTP(mobRoot.CFrame * CFrame.new(0, BONE_HEIGHT, 0))
-                    MousePos = mobRoot.Position
-                end
-
-                Attack.Kill(mob, _G.AutoFarm_Bone)
-            else
-                -- No mob yet: go directly to the Bone mob farm area and load it.
-                BoneTP(BONE_MOB_POS * CFrame.new(0, BONE_HEIGHT, 0))
+            if _G.SelectWeapon then
                 pcall(function()
-                    FarmCore.LoadArea(BONE_MOB_POS.Position, BonesTable, true)
+                    EquipWeapon(_G.SelectWeapon)
                 end)
-                task.wait(0.35)
             end
+
+            local mob = BoneMob()
+
+            if not mob then
+                BoneTP(BoneFarm.MobPosition * CFrame.new(0, BoneFarm.Height, 0))
+                pcall(function()
+                    FarmCore.LoadArea(BoneFarm.MobPosition.Position, BoneFarm.Mobs, true)
+                end)
+                return
+            end
+
+            -- Put the selected mob at the farm anchor and stack same-name mobs there.
+            BoneLock(mob, BoneFarm.MobPosition)
+
+            for _, other in ipairs(workspace.Enemies:GetChildren()) do
+                if other ~= mob and other.Name == mob.Name then
+                    BoneLock(other, BoneFarm.MobPosition)
+                end
+            end
+
+            local mobRoot = mob:FindFirstChild("HumanoidRootPart")
+            if not mobRoot then return end
+
+            -- Exactly 10 studs above the mob.
+            BoneTP(mobRoot.CFrame * CFrame.new(0, BoneFarm.Height, 0))
+            MousePos = mobRoot.Position
+
+            -- Attack directly with the 100-stud hitbox.
+            BoneAttack()
         end)
     end
 end)
@@ -3641,7 +3728,7 @@ spawn(function()
                         if not _G.FarmTyrant then break end
                         if mob and mob.Name == mobName and mob:FindFirstChild("HumanoidRootPart") and mob:FindFirstChild("Humanoid") and mob.Humanoid.Health > 0 then
                             if (hrp.Position - mob.HumanoidRootPart.Position).Magnitude > 5000 then
-                                _tp(mob.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+                                _tp(mob.HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                                 local t0 = tick()
                                 repeat wait() hrp = plr.Character and plr.Character:FindFirstChild("HumanoidRootPart") until not _G.FarmTyrant or not hrp or (hrp.Position - mob.HumanoidRootPart.Position).Magnitude <= 6 or tick() - t0 > 8
                             end
@@ -4165,7 +4252,7 @@ local function GetBladeHits()
     for _, part in pairs({game.Workspace.Enemies, game.Workspace.Characters}) do
         for _, v in pairs(part:GetChildren()) do
             if v:FindFirstChild("HumanoidRootPart") and v:FindFirstChild("Head") and v:FindFirstChild("Humanoid") then
-                if GetDistance(v.HumanoidRootPart) < 60 then
+                if GetDistance(v.HumanoidRootPart) <= 100 then
                     table.insert(targets, v)
                 end
             end
@@ -5518,7 +5605,7 @@ spawn(function()
           repeat wait()
             if plr.Character:FindFirstChild("Yama") or plr.Backpack:FindFirstChild("Yama") then EquipWeapon("Yama")
             elseif plr.Character:FindFirstChild("Tushita") or plr.Backpack:FindFirstChild("Tushita") then EquipWeapon("Tushita")                                    
-            end _tp(v.HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+            end _tp(v.HumanoidRootPart.CFrame * CFrame.new(0,20,0))
           until not _G.CDK or not v.Parent or v.Humanoid.Health <= 0                                
         else
           _tp(CFrame.new(-12318.193359375, 601.9518432617188, -6538.662109375)) wait(.5)
@@ -5727,7 +5814,7 @@ spawn(function()
                         end
                       end
                      elseif replicated:FindFirstChild("Cake Queen") and replicated:FindFirstChild("Cake Queen").Humanoid.Health > 0 then
-                       _tp(replicated:FindFirstChild("Cake Queen").HumanoidRootPart.CFrame * CFrame.new(0,FARM_HEIGHT,0))
+                       _tp(replicated:FindFirstChild("Cake Queen").HumanoidRootPart.CFrame * CFrame.new(0,30,0))
                      else
                    if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - workspace.Map.HeavenlyDimension.Spawn.Position).Magnitude <= 1000 then
                      for i,v in pairs(workspace.Map.HeavenlyDimension.Exit:GetChildren()) do
